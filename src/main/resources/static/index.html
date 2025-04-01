@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">M
+<html>
+<head>
+    <title>test测试</title>
+    <style>
+        canvas { border: 1px solid #333; background: #000; }
+        body { display: flex; justify-content: center; }
+    </style>
+</head>
+<body>
+<canvas id="solarSystem" width="800" height="600"></canvas>
+
+<script>
+    const canvas = document.getElementById('solarSystem');
+    const ctx = canvas.getContext('2d');
+
+    // 天体参数配置[1,6](@ref)
+    const bodies = [
+        { name: 'Sun', radius: 30, distance: 0, color: '#FFD700', speed: 0 },
+        { name: 'Earth', radius: 10, distance: 150, color: '#4169E1', speed: 0.01 },
+        { name: 'Moon', radius: 4, distance: 40, color: '#D3D3D3', speed: 0.03 }
+    ];
+
+    // 初始化角度
+    let angle = { Earth: 0, Moon: 0 };
+
+    function drawBody(x, y, radius, color) {
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 绘制太阳[2](@ref)
+        drawBody(canvas.width/2, canvas.height/2, bodies[0].radius, bodies[0].color);
+
+        // 地球运动[4](@ref)
+        angle.Earth += bodies[1].speed;
+        const earthX = canvas.width/2 + Math.cos(angle.Earth) * bodies[1].distance;
+        const earthY = canvas.height/2 + Math.sin(angle.Earth) * bodies[1].distance;
+        drawBody(earthX, earthY, bodies[1].radius, bodies[1].color);
+
+        // 月球绕地球运动[7](@ref)
+        angle.Moon += bodies[2].speed;
+        const moonX = earthX + Math.cos(angle.Moon) * bodies[2].distance;
+        const moonY = earthY + Math.sin(angle.Moon) * bodies[2].distance;
+        drawBody(moonX, moonY, bodies[2].radius, bodies[2].color);
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
+</body>
+</html>
