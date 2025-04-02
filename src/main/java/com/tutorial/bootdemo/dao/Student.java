@@ -1,16 +1,19 @@
 package com.tutorial.bootdemo.dao;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Setter
+@Getter
 @Entity
-@Table(name = "student")
+@Table(name="student")
 public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Long id;
+    private long id;
 
     @Column(name="name")
     private String name;
@@ -19,5 +22,5 @@ public class Student {
     private String email;
 
     @Column(name="age")
-    private Long age;
+    private int age;
 }
