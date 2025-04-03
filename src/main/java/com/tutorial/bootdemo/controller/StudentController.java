@@ -1,6 +1,7 @@
 package com.tutorial.bootdemo.controller;
 
 import com.tutorial.bootdemo.dao.Student;
+import com.tutorial.bootdemo.dto.StudentDTO;
 import com.tutorial.bootdemo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,13 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping("/student/{id}")
-    public Student findById(@PathVariable Long id) {
+    public StudentDTO findById(@PathVariable Long id) {
         return studentService.findById(id);
     }
 
     @PostMapping("/student")
-    public Student addEntity(@RequestBody Student student) {
-        return studentService.addEntity(student);
+    public StudentDTO addEntity(@RequestBody StudentDTO dto) {
+        return studentService.addEntity(dto);
     }
 
     @DeleteMapping("/student/{id}")

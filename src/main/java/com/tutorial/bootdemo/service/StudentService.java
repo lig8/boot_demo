@@ -1,11 +1,12 @@
 package com.tutorial.bootdemo.service;
 
 import com.tutorial.bootdemo.dao.Student;
+import com.tutorial.bootdemo.dto.StudentDTO;
 
 public interface StudentService {
-    Student findById(Long id);
+    StudentDTO findById(Long id);
 
-    Student addEntity(Student student);
+    StudentDTO addEntity(StudentDTO dto);
 
     void deleteEntity(Long id);
 
