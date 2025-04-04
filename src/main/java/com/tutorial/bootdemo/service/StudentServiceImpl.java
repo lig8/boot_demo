@@ -15,8 +15,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDTO findById(Long id) {
         Student student = studentRepository.findById(id).orElseThrow(()->new RuntimeException("Student not found"));
-        StudentDTO dto = StudentConverter.toDTO(student);
-        return dto;
+        return(StudentConverter.toDTO(student));
     }
 
     @Override

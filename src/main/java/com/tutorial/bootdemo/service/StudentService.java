@@ -1,6 +1,5 @@
 package com.tutorial.bootdemo.service;
 
-import com.tutorial.bootdemo.dao.Student;
 import com.tutorial.bootdemo.dto.StudentDTO;
 
 public interface StudentService {

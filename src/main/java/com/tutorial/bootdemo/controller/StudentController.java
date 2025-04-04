@@ -1,5 +1,6 @@
 package com.tutorial.bootdemo.controller;
 
+import com.tutorial.bootdemo.Response;
 import com.tutorial.bootdemo.dto.StudentDTO;
 import com.tutorial.bootdemo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,13 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping("/student/{id}")
-    public StudentDTO findById(@PathVariable Long id) {
-        return studentService.findById(id);
+    public Response<StudentDTO> findById(@PathVariable Long id) {
+        return Response.success(studentService.findById(id));
     }
 
     @PostMapping("/student")
-    public StudentDTO addEntity(@RequestBody StudentDTO dto) {
-        return studentService.addEntity(dto);
+    public Response<StudentDTO> addEntity(@RequestBody StudentDTO dto) {
+        return Response.success(studentService.addEntity(dto));
     }
 
     @DeleteMapping("/student/{id}")
@@ -27,7 +28,7 @@ public class StudentController {
     }
 
     @PutMapping("/student/{id}")
-    public StudentDTO updateEntity(@PathVariable Long id, @RequestParam(required = false) String name,  @RequestParam(required = false) String email) {
-        return studentService.updateEntity(id,name,email);
+    public Response<StudentDTO> updateEntity(@PathVariable Long id, @RequestParam(required = false) String name,  @RequestParam(required = false) String email) {
+        return Response.success(studentService.updateEntity(id,name,email));
     }
 }
