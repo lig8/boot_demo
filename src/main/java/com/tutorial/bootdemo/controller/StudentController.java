@@ -1,6 +1,5 @@
 package com.tutorial.bootdemo.controller;
 
-import com.tutorial.bootdemo.dao.Student;
 import com.tutorial.bootdemo.dto.StudentDTO;
 import com.tutorial.bootdemo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class StudentController {
     }
 
     @PutMapping("/student/{id}")
-    public Student updateEntity(@PathVariable Long id, @RequestParam(required = false) String name, @RequestParam(required = false) Long age, @RequestParam(required = false) String email) {
-        return studentService.updateEntity(id,name,email,age);
+    public StudentDTO updateEntity(@PathVariable Long id, @RequestParam(required = false) String name,  @RequestParam(required = false) String email) {
+        return studentService.updateEntity(id,name,email);
     }
 }

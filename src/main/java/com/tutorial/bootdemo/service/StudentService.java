@@ -10,5 +10,5 @@ public interface StudentService {
 
     void deleteEntity(Long id);
 
-    Student updateEntity(Long id, String name, String email, Long age);
+    StudentDTO updateEntity(Long id, String name, String email);
 }

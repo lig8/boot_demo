@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student updateEntity(Long id, String name, String email, Long age) {
+    public StudentDTO updateEntity(Long id, String name, String email) {
         Student student = studentRepository.findById(id).orElseThrow(()->new RuntimeException("Student not found"));
         if(name!=null){
             student.setName(name);
@@ -43,9 +43,6 @@ public class StudentServiceImpl implements StudentService {
         if(email != null){
             student.setEmail(email);
         }
-        if(age!=null){
-            student.setAge(age);
-        }
-        return (studentRepository.save(student));
+        return (StudentConverter.toDTO(studentRepository.save(student)));
     }
 }
